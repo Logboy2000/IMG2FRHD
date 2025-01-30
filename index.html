@@ -7,7 +7,7 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            
+            font-style: normal;
             flex-direction: column;
             align-items: center;
             justify-content: center;
@@ -22,11 +22,16 @@
         h3 {
             color: #ff0000;
         }
+        b {
+            font-style: bold;
+        }
         #settingsContainer {
             display: flex;
             flex-direction: column;
             gap: 10px;
             margin-bottom: 20px;
+            background-color: #242424;
+            padding: 1rem;
         }
         #settingsContainer div {
             display: flex;
@@ -39,6 +44,7 @@
             border: 1px solid #333;
             background-color: #1e1e1e;
             color: #e0e0e0;
+            text-align: right;
         }
         input[type="file"], textarea, button {
             margin: 10px 0;
@@ -83,14 +89,19 @@
             transform: scale(1.05);
             background-color: #0056b3;
         }
-        a {
+        a { 
+            transition: all 0.2s;
             color: #007BFF;
+            text-decoration: none;
         }
         a:hover {
+            transition: all 0.2s;
+            transform: scale(1.05);
             text-decoration: underline;
         }
         details {
-            width: 300px;
+            width: auto;
+            max-width: 500px;
             margin: 10px 0;
         }
         summary {
@@ -104,22 +115,32 @@
         summary:hover {
             background-color: #333;
         }
+        #previewCanvas {
+            border: 1px solid #333;
+            border-radius: 5px;
+        }
     </style>
 </head>
 <body onload="init()">
+    <link rel="icon" href="favicon.png" type="image/x-icon">
     <h1>Img2FRHD :)</h1>
     <h2>A program that converts image files into <a href="https://www.freeriderhd.com" target="_blank">FreeRiderHD</a> Tracks</h2>
     <h3>WARNING: Semi-large Images may freeze this tab for <b>a while</b>. <b>BE PATIENT</b></h3>
+    <hr>
     <details>
         <summary>Settings</summary>
         <div id="settingsContainer">
             <div>
                 <label for="xOffset">X Offset</label>
-                <input type="number" id="xOffset" value="-50">
+                <input type="number" id="xOffset" value="0">
             </div>
             <div>
-                <label for="yOffset">X Offset</label>
-                <input type="number" id="yOffset" value="100">
+                <label for="yOffset">Y Offset</label>
+                <input type="number" id="yOffset" value="0">
+            </div>
+            <div>
+                <label for="imageScale">Image Scale (Big numbers WILL CRASH)</label>
+                <input type="number" id="imageScale" value="1">
             </div>
             <div>
                 <label for="blackThreshold">Black Threshold</label>
@@ -134,15 +155,22 @@
     <label for="uploadButton" class="custom-file-upload">Choose Image</label>
     <br>
     <input type="file" id="uploadButton" accept="image/*">
-    <img src="" alt="" id="inputImage">
+    <button onclick="genImageWithLines()">Generate Track Code</button>
+    <hr>
+    
+    
     <br>
+    <h2>Preview Window:</h2>
+    <canvas id="previewCanvas"></canvas>
+    <hr>
     <textarea id="outputField" disabled style="border-width: 1em; width: 90%;"></textarea>
     <br>
     <button onclick="copyToClipboard()">Copy Code to Clipboard</button>
-    <br>
+    <hr>
     <span>The source code for this can be found <a href="https://github.com/Logboy2000/IMG2FRHD/" target="_blank">here</a></span>
     <br>
     <span>Also a very special thanks to ObeyLordGoomy for creating <a href="https://github.com/ObeyLordGoomy/frhd.js/tree/master" target="_blank">frhd.js</a></span>
+    <script src="frhd.js"></script>
     <script src="index.js"></script>
     
 </body>
