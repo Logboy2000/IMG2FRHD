@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freerider Image Converter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+        h1 {
+            color: #ffffff;
+        }
+        h3 {
+            color: #ff0000;
+        }
+        #settingsContainer {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        #settingsContainer div {
+            display: flex;
+            justify-content: space-between;
+            width: 300px;
+        }
+        input[type="number"] {
+            width: 100px;
+            border-radius: 5px;
+            border: 1px solid #333;
+            background-color: #1e1e1e;
+            color: #e0e0e0;
+        }
+        input[type="file"], textarea, button {
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        .custom-file-upload {
+            transition: all 0.2s;
+            display: inline-block;
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        .custom-file-upload:hover {
+            transition: all 0.2s;
+            transform: scale(1.05);
+            background-color: #0056b3;
+        }
+        textarea {
+            height: 150px;
+            resize: none;
+            border: 1px solid #333;
+            background-color: #1e1e1e;
+            color: #e0e0e0;
+        }
+        button {
+            transition: all 0.2s;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            transition: all 0.2s;
+            transform: scale(1.05);
+            background-color: #0056b3;
+        }
+        a {
+            color: #007BFF;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        details {
+            width: 300px;
+            margin: 10px 0;
+        }
+        summary {
+            background-color: #1e1e1e;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 1px solid #333;
+            color: #e0e0e0;
+        }
+        summary:hover {
+            background-color: #333;
+        }
+    </style>
+</head>
+<body onload="init()">
+    <h1>Img2FRHD :)</h1>
+    <h2>A Program that converts image files into <a href="https://www.freeriderhd.com">FreeRiderHD</a> Tracks</h2>
+    <h3>WARNING: Semi-large Images may freeze this tab for a while. Be Patient</h3>
+    <details>
+        <summary>Settings</summary>
+        <div id="settingsContainer">
+            <div>
+                <label for="xOffset">X Offset</label>
+                <input type="number" id="xOffset" value="-50">
+            </div>
+            <div>
+                <label for="yOffset">X Offset</label>
+                <input type="number" id="yOffset" value="100">
+            </div>
+            <div>
+                <label for="blackThreshold">Black Threshold</label>
+                <input type="number" id="blackThreshold" value="50">
+            </div>
+            <div>
+                <label for="greyThreshold">Grey Threshold</label>
+                <input type="number" id="greyThreshold" value="100">
+            </div>
+        </div>
+    </details>
+    <label for="uploadButton" class="custom-file-upload">Browse</label>
+    <input type="file" id="uploadButton" accept="image/*">
+    <img src="" alt="" id="inputImage">
+    <textarea id="outputField" disabled style="border-width: 1em; width: 90%;"></textarea>
+    <button onclick="copyToClipboard()">Copy Code to Clipboard</button>
+    <br>
+    <span>Special thanks to ObeyLordGoomy for creating </span>
+    <a href="https://github.com/ObeyLordGoomy/frhd.js/tree/master" target="_blank">frhd.js</a>
+    <script src="index.js"></script>
+</body>
+</html>
