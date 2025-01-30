@@ -108,8 +108,8 @@
 </head>
 <body onload="init()">
     <h1>Img2FRHD :)</h1>
-    <h2>A Program that converts image files into <a href="https://www.freeriderhd.com">FreeRiderHD</a> Tracks</h2>
-    <h3>WARNING: Semi-large Images may freeze this tab for a while. Be Patient</h3>
+    <h2>A program that converts image files into <a href="https://www.freeriderhd.com">FreeRiderHD</a> Tracks</h2>
+    <h3>WARNING: Semi-large Images may freeze this tab for <b>a while</b>. <b>BE PATIENT</b></h3>
     <details>
         <summary>Settings</summary>
         <div id="settingsContainer">
@@ -131,10 +131,13 @@
             </div>
         </div>
     </details>
-    <label for="uploadButton" class="custom-file-upload">Browse</label>
+    <label for="uploadButton" class="custom-file-upload">Choose Image</label>
+    <br>
     <input type="file" id="uploadButton" accept="image/*">
     <img src="" alt="" id="inputImage">
+    <br>
     <textarea id="outputField" disabled style="border-width: 1em; width: 90%;"></textarea>
+    <br>
     <button onclick="copyToClipboard()">Copy Code to Clipboard</button>
     <br>
     <span>Special thanks to ObeyLordGoomy for creating </span>
