@@ -42,12 +42,13 @@ class FrhdTrack {
                 boosts: [],
                 gravities: [],
                 teleporters: [],
-                vehicles: {
-                    heli: [],
-                    truck: [],
-                    balloon: [],
-                    blob: []
-                }
+
+            }
+            this.vehicles = {
+                heli: [],
+                truck: [],
+                balloon: [],
+                blob: []
             }
     }
 
@@ -127,7 +128,7 @@ class FrhdTrack {
      * @param {number} [x=0] - x location
      * @param {number} [y=0] - y location
      */
-    addTarget(x = 0, y = 0) {
+    addStar(x = 0, y = 0) {
         this.powerups.targets.push([x, y])
     }
 
@@ -207,7 +208,7 @@ class FrhdTrack {
      */
     addVehicle(x = 0, y = 0, type = 'heli', time = 10) {
         if (typeof type == 'string') {
-            type = type.toLowerCase()
+            type = type.toLowerCase();
             switch (type) {
                 case 'heli':
                 case 'truck':
@@ -221,7 +222,9 @@ class FrhdTrack {
             let types = ['heli', 'truck', 'balloon', 'blob'];
             type = types[type - 1];
         }
-        this.vehicles[type].push([x, y, time])
+        if (typeof type === 'string') {
+            this.vehicles[type].push([x, y, time]);
+        }
     }
 
     /**
@@ -260,7 +263,7 @@ class FrhdTrack {
             }
         }
         let powerupTypes = {
-            T: this.addTarget,
+            T: this.addStar,
             S: this.addSlowmo,
             O: this.addBomb,
             C: this.addCheckpoint,

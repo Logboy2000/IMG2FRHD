@@ -1,179 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Freerider Image Converter</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            font-style: normal;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #121212;
-            color: #e0e0e0;
-        }
-        h1 {
-            color: #ffffff;
-        }
-        h3 {
-            color: #ff0000;
-        }
-        b {
-            font-style: bold;
-        }
-        #settingsContainer {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-bottom: 20px;
-            background-color: #242424;
-            padding: 1rem;
-        }
-        #settingsContainer div {
-            display: flex;
-            justify-content: space-between;
-            width: 300px;
-        }
-        input[type="number"] {
-            width: 100px;
-            border-radius: 5px;
-            border: 1px solid #333;
-            background-color: #1e1e1e;
-            color: #e0e0e0;
-            text-align: right;
-        }
-        input[type="file"], textarea, button {
-            margin: 10px 0;
-            border-radius: 5px;
-        }
-        input[type="file"] {
-            display: none;
-        }
-        .custom-file-upload {
-            transition: all 0.2s;
-            display: inline-block;
-            padding: 10px 20px;
-            cursor: pointer;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 5px;
-        }
-        .custom-file-upload:hover {
-            transition: all 0.2s;
-            transform: scale(1.05);
-            background-color: #0056b3;
-        }
-        textarea {
-            height: 150px;
-            resize: none;
-            border: 1px solid #333;
-            background-color: #1e1e1e;
-            color: #e0e0e0;
-        }
-        button {
-            transition: all 0.2s;
-            padding: 10px 20px;
-            background-color: #007BFF;
-            color: white;
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-        button:hover {
-            transition: all 0.2s;
-            transform: scale(1.05);
-            background-color: #0056b3;
-        }
-        a { 
-            transition: all 0.2s;
-            color: #007BFF;
-            text-decoration: none;
-        }
-        a:hover {
-            transition: all 0.2s;
-            transform: scale(1.05);
-            text-decoration: underline;
-        }
-        details {
-            width: auto;
-            max-width: 500px;
-            margin: 10px 0;
-        }
-        summary {
-            background-color: #1e1e1e;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            border: 1px solid #333;
-            color: #e0e0e0;
-        }
-        summary:hover {
-            background-color: #333;
-        }
-        #previewCanvas {
-            border: 1px solid #333;
-            border-radius: 5px;
-        }
-    </style>
+    <title>IMG2FRHD</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body onload="init()">
     <link rel="icon" href="favicon.png" type="image/x-icon">
-    <h1>IMG2FRHD :)</h1>
-    <h2>A program that converts image files into <a href="https://www.freeriderhd.com" target="_blank">FreeRiderHD</a> Tracks</h2>
-    <h3>WARNING: Semi-large Images may freeze this tab for <b>a while</b>. <b>BE PATIENT</b></h3>
-    <hr>
-    <details>
-        <summary>Settings</summary>
-        <div id="settingsContainer">
-            <div>
-                <label for="xOffset">X Offset</label>
-                <input type="number" id="xOffset" value="0">
-            </div>
-            <div>
-                <label for="yOffset">Y Offset</label>
-                <input type="number" id="yOffset" value="0">
-            </div>
-            <div>
-                <label for="imageScale">Image Scale (Big numbers WILL CRASH)</label>
-                <input type="number" id="imageScale" value="1">
-            </div>
-            <div>
-                <label for="blackThreshold">Black Threshold</label>
-                <input type="number" id="blackThreshold" value="50">
-            </div>
-            <div>
-                <label for="greyThreshold">Grey Threshold</label>
-                <input type="number" id="greyThreshold" value="100">
-            </div>
-        </div>
-    </details>
-    <label for="uploadButton" class="custom-file-upload">Choose Image</label>
-    <br>
-    <input type="file" id="uploadButton" accept="image/*">
-    <button onclick="genImageWithLines()">Generate Track Code</button>
-    <hr>
-    
-    
-    <br>
-    <h2>Preview Window:</h2>
     <canvas id="previewCanvas"></canvas>
-    <hr>
-    <textarea id="outputField" disabled style="border-width: 1em; width: 90%;"></textarea>
-    <br>
-    <button onclick="copyToClipboard()">Copy Code to Clipboard</button>
-    <hr>
-    <span>The source code for this can be found <a href="https://github.com/Logboy2000/IMG2FRHD/" target="_blank">here</a></span>
-    <br>
-    <span>Very special thanks to <a href="https://www.youtube.com/@1hundred11">@1hundred11</a> on YouTube for an explanation on track code</span>
-    <br>
-    <span>And thanks to ObeyLordGoomy for creating <a href="https://github.com/ObeyLordGoomy/frhd.js/tree/master" target="_blank">frhd.js</a></span>
+    <textarea id="outputField" disabled placeholder="Track code output..."></textarea>
+
+    <div id="sidebar">
+        <hr>
+        <h1>IMG2FRHD :)</h1>
+        <h2>A program that converts image files into <a href="https://www.freeriderhd.com"
+                target="_blank">FreeRiderHD</a> Tracks</h2>
+        <h3>WARNING: Large Images WILL freeze this tab</h3>
+        <hr>
+        <input type="file" id="uploadButton" accept="image/*">
+        <button onclick="genTrackFromImageData()">Generate Track Code</button>
+        <button onclick="copyToClipboard()">Copy Code to Clipboard</button>
+        
+        <hr>
+        <div id="settingsContainer">
+            <h1>Settings</h1>
+            
+        </div>
+        <hr>
+        <footer>
+            <span>Very special thanks to <a href="https://www.youtube.com/@1hundred11">@1hundred11</a> on YouTube for an
+                explanation on track code</span>
+            <hr>
+            <span>And thanks to ObeyLordGoomy for creating <a
+                    href="https://github.com/ObeyLordGoomy/frhd.js/tree/master" target="_blank">frhd.js</a></span>
+            <hr>
+            <span>The source code for this can be found <a href="https://github.com/Logboy2000/IMG2FRHD/"
+                        target="_blank">here</a></span>
+        </footer>
+        <hr>
+    </div>
     <script src="frhd.js"></script>
     <script src="index.js"></script>
-    
+
 </body>
+
 </html>
