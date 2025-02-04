@@ -3,13 +3,11 @@ An image to freerider track converter written in pure Javascript
 
 ## Usage
 
-You can use this tool by:
-
-Visiting [logboy2000.github.io/IMG2FRHD/](https://logboy2000.github.io/IMG2FRHD/).
-
-or
-
-Cloning/downloading this repo and opening index.html in a browser.
+- Visit [logboy2000.github.io/IMG2FRHD/](https://logboy2000.github.io/IMG2FRHD/).
+- Upload an image
+- Tweak settings
+- Press 'Generate'
+- Copy the track code!
 
 ## Credit
 
