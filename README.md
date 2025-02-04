@@ -1,10 +1,12 @@
 # IMG2FRHD
-An image to freerider track converter
+An image to freerider track converter written in pure Javascript
 
 ## Usage
 
-You can use this tool by 
+You can use this tool by:
+
 A) Visiting [logboy2000.github.io/IMG2FRHD/](https://logboy2000.github.io/IMG2FRHD/)
+
 B) Cloning/downloading this repo and opening index.html in a browser
 
 ## Credit
