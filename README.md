@@ -1,5 +1,5 @@
 # IMG2FRHD
-An image to freerider track converter written in pure Javascript
+An image to freerider track converter written in pure Javascript (for better or for worse)
 
 ## Usage
 
